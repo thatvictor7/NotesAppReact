@@ -1,8 +1,9 @@
 import React from 'react';
+// const axios = require('axios')
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
+// import Divider from '@material-ui/core/Divider';
 // import Grid from '@material-ui/core/Grid';
 import Note from './Note'
 
@@ -41,15 +42,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const getNotes = () => {
+    
+}
+
 export default function CSSGrid() {
   const classes = useStyles();
 
   return (
     <div>
-      {/* <Divider className={classes.divider} /> */}
-      {/* <Typography variant="subtitle1" gutterBottom>
-        CSS Grid Layout:
-      </Typography> */}
         <div className={classes.container}>
         <div style={{ gridColumnEnd: 'span 4' }}>
           <Paper className={classes.paper}>
