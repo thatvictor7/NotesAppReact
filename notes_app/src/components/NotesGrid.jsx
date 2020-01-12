@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     // justifyContent: 'space-around',
     justifyContent: 'center',
     overflow: 'hidden',
-    textAlign: 'left !important'
+    textAlign: 'left !important',
+    marginTop: '1%',
   },
   paper: {
     // padding: theme.spacing(1),
@@ -45,11 +46,11 @@ export default function CSSGrid() {
 
   return (
     <div>
-      <Divider className={classes.divider} />
-      <Typography variant="subtitle1" gutterBottom>
+      {/* <Divider className={classes.divider} /> */}
+      {/* <Typography variant="subtitle1" gutterBottom>
         CSS Grid Layout:
-      </Typography>
-          <div className={classes.container}>
+      </Typography> */}
+        <div className={classes.container}>
         <div style={{ gridColumnEnd: 'span 4' }}>
           <Paper className={classes.paper}>
               <Note />

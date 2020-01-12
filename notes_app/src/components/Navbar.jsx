@@ -14,6 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -77,7 +78,11 @@ const useStyles = makeStyles(theme => ({
     },
     bar: {
         backgroundColor: '#0091ea'
-    }
+    },
+    orange: {
+        color: 'rgb(255,255,255)',
+        backgroundColor: 'rgb(255,140,0)',
+    },
 }))
 
 export default function Navbar() {
@@ -155,7 +160,8 @@ export default function Navbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          {/* <AccountCircle /> */}
+          <Avatar className={classes.orange}>N</Avatar>
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -210,7 +216,8 @@ export default function Navbar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {/* <AccountCircle /> */}
+              <Avatar className={classes.orange}>N</Avatar>
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
