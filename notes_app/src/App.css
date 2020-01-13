@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: rgba(244, 242, 242, 0.817);
+  /* height: 100%; */
 }
 
 body {
@@ -9,6 +11,7 @@ body {
 /* .bar {
   background-color: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%) !important;
 } */
-.container {
-  color: blue;
+.test {
+  /* color: blue !important; */
+  /* margin-top: 50% !important; */
 }
