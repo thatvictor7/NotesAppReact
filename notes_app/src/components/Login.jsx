@@ -5,6 +5,7 @@ import { makeStyles, InputAdornment, InputLabel, Input, FormControl, Typography,
 // import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Vpn_key from '@material-ui/icons/VpnKey'
+import axios from 'axios'
 
 // const useStyles = makeStyles(theme => ({
 const classes = {
@@ -74,12 +75,12 @@ class Login extends Component {
                     <Typography style={classes.title} variant="h2" component="h2">
                         Login
                     </Typography>
-                    <form style={classes.form} method='POST'>
+                    <form style={classes.form} onSubmit={this.handleSubmit} method='POST'>
                         <FormControl >
                             <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
                             <Input
                                 id="input-with-icon-adornment"
-                                type='email'
+                                // type='email'
                                 placeholder='example@email.com'
                                 onChange={this.handleUsername}
                                 startAdornment={
@@ -95,6 +96,7 @@ class Login extends Component {
                                 id="input-with-icon-adornment"
                                 type='password'
                                 placeholder='password'
+                                onChange={this.handlePassword}
                                 startAdornment={
                                     <InputAdornment position="start">
                                         <Vpn_key style={classes.logos} />
@@ -102,7 +104,12 @@ class Login extends Component {
                                 }
                             />
                         </FormControl>
-                        <Button type='button' style={classes.loginButton} variant="contained" size='large'>
+                        <Button type='Submit' 
+                                content='submit'
+                                style={classes.loginButton} 
+                                variant="contained" 
+                                onClick={this.handleSubmitButton}
+                                size='large'>
                             Login
                         </Button>
                     </form>
@@ -112,9 +119,30 @@ class Login extends Component {
     }
 
     handleUsername = (e) => {
-
         this.setState({ username: e.target.value })
         // console.log('handle un', this.state)
+    }
+
+    handlePassword = (e) => {
+        this.setState({ password: e.target.value })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        axios({
+            method: 'POST',
+            url: 'http://localhost:8080/login',
+            data: {
+                username: this.state.username,
+                password: this.state.password
+            }
+        })
+        .then((response) => {
+            console.log(response)
+        })
+    }
+
+    handleSubmitButton = () => {
 
     }
 
