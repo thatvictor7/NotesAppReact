@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar'
 import NotesGrid from './components/NotesGrid'
+import Login from './components/Login'
 import axios from 'axios'
 // import { render } from '@testing-library/react';
 
@@ -30,9 +31,10 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
-        <NotesGrid />
-        {this.getNotes()}
+        {/* <Navbar /> */}
+        {/* <NotesGrid /> */}
+        <Login />
+        {/* {this.getNotes()} */}
         {/* {console.log(this.state)} */}
       </div>
     )
