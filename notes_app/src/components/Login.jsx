@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { makeStyles, InputAdornment, InputLabel, Input, FormControl, Typography, Button } from '@material-ui/core';
-import axios from 'axios'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getUser } from '../actions/getUser'
@@ -14,7 +13,6 @@ const classes = {
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center'
-
     },
     title: {
         color: 'rgba(31,31,31,.8)',
@@ -55,16 +53,12 @@ class Login extends Component {
     }
 
     render() {
-
-        // const classes = useStyles()
         return (
             <div style={classes.container}>
                 <Typography style={classes.appName} variant="h1" component="h1">
-                    {/* <Typography className={`${classes.appName}`} variant="h1" component="h1"></Typography> */}
                     Notesy™
                 </Typography>
                 <div style={classes.formContainer}>
-                    {/* <Typography className={`test ${classes.title}`} variant="h2" component="h2"> */}
                     <Typography style={classes.title} variant="h2" component="h2">
                         Login
                     </Typography>
@@ -123,6 +117,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
+
         this.props.getUser(userInfo)
     }
 }

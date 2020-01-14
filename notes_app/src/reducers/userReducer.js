@@ -3,7 +3,8 @@ import {
         } from '../actions/types'
 
 const initialState = {
-    user: [],
+    user: null,
+    loggedIn: false
 }
 
 export default (state = initialState, action) => {
@@ -12,8 +13,8 @@ export default (state = initialState, action) => {
         case USER_AUTH_POST:
             return {
                 ...state,
-                // all: action.someExtraData
-                user: action.userData
+                user: action.payload,
+                loggedIn: action.loggedIn
             }
 
         default:
