@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import Navbar from './components/Navbar'
 import NotesGrid from './components/NotesGrid'
 import Login from './components/Login'
@@ -34,8 +34,6 @@ export default class App extends Component {
         {/* <Navbar /> */}
         {/* <NotesGrid /> */}
         <Login />
-        {/* {this.getNotes()} */}
-        {/* {console.log(this.state)} */}
       </div>
     )
   }

@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
 import { makeStyles, InputAdornment, InputLabel, Input, FormControl, Typography, Button } from '@material-ui/core';
-// import FormControl from '@material-ui/core/FormControl';
-// import TextField from '@material-ui/core/TextField';
-// import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getUser } from '../actions/getUser'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Vpn_key from '@material-ui/icons/VpnKey'
-import axios from 'axios'
 
 // const useStyles = makeStyles(theme => ({
 const classes = {
     container: {
-        // backgroundColor: 'red',
-        // height: '100rem',
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center'
-
     },
     title: {
         color: 'rgba(31,31,31,.8)',
-        // paddingTop: '25%',
-        // paddingBottom: '25%',
     },
     formContainer: {
-        // margin: 'auto'
         display: 'flex',
         flexDirection: 'column',
         width: '20rem',
@@ -36,7 +29,6 @@ const classes = {
     },
     appName: {
         color: '#fdd835',
-        // alignSelf: 'flex-start',
         paddingBottom: '3rem',
         paddingTop: '8%'
     },
@@ -55,34 +47,30 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            email: '',
             password: ''
         }
     }
 
     render() {
-
-        // const classes = useStyles()
-
         return (
             <div style={classes.container}>
                 <Typography style={classes.appName} variant="h1" component="h1">
-                    {/* <Typography className={`${classes.appName}`} variant="h1" component="h1"></Typography> */}
                     Notesy™
                 </Typography>
                 <div style={classes.formContainer}>
-                    {/* <Typography className={`test ${classes.title}`} variant="h2" component="h2"> */}
                     <Typography style={classes.title} variant="h2" component="h2">
                         Login
                     </Typography>
-                    <form style={classes.form} onSubmit={this.handleSubmit} method='POST'>
+                    <form style={classes.form} onSubmit={this.onSubmitForm} method='POST'>
                         <FormControl >
-                            <InputLabel htmlFor="input-with-icon-adornment">Username</InputLabel>
+                            <InputLabel htmlFor="input-with-icon-adornment">Email</InputLabel>
                             <Input
                                 id="input-with-icon-adornment"
-                                // type='email'
+                                type='email'
+                                name='email'
                                 placeholder='example@email.com'
-                                onChange={this.handleUsername}
+                                onChange={this.onChangeForm}
                                 startAdornment={
                                     <InputAdornment position="start">
                                         <AccountCircle style={classes.logos} />
@@ -95,8 +83,9 @@ class Login extends Component {
                             <Input
                                 id="input-with-icon-adornment"
                                 type='password'
+                                name='password'
                                 placeholder='password'
-                                onChange={this.handlePassword}
+                                onChange={this.onChangeForm}
                                 startAdornment={
                                     <InputAdornment position="start">
                                         <Vpn_key style={classes.logos} />
@@ -104,11 +93,11 @@ class Login extends Component {
                                 }
                             />
                         </FormControl>
-                        <Button type='Submit' 
+                        <Button type='submit' 
                                 content='submit'
                                 style={classes.loginButton} 
                                 variant="contained" 
-                                onClick={this.handleSubmitButton}
+                                // onClick={this.handleSubmitButton}
                                 size='large'>
                             Login
                         </Button>
@@ -118,34 +107,23 @@ class Login extends Component {
         )
     }
 
-    handleUsername = (e) => {
-        this.setState({ username: e.target.value })
-        // console.log('handle un', this.state)
+    onChangeForm = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    handlePassword = (e) => {
-        this.setState({ password: e.target.value })
-    }
-
-    handleSubmit = (e) => {
+    onSubmitForm = (e) => {
         e.preventDefault()
-        axios({
-            method: 'POST',
-            url: 'http://localhost:8080/login',
-            data: {
-                username: this.state.username,
-                password: this.state.password
-            }
-        })
-        .then((response) => {
-            console.log(response)
-        })
+        const userInfo = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        this.props.getUser(userInfo)
     }
-
-    handleSubmitButton = () => {
-
-    }
-
 }
 
-export default Login
+Login.proptype = {
+    getUser: PropTypes.func.isRequired
+}
+
+export default connect(null, { getUser })(Login)
