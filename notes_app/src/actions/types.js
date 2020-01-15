@@ -1,1 +1,2 @@
 export const USER_AUTH_POST = 'USER_AUTH_POST'
+export const FETCH_NOTES = 'FETCH_NOTES'

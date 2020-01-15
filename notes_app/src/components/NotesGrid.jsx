@@ -1,10 +1,6 @@
 import React from 'react';
-// const axios = require('axios')
 import { makeStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-// import Divider from '@material-ui/core/Divider';
-// import Grid from '@material-ui/core/Grid';
 import Note from './Note'
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +10,6 @@ const useStyles = makeStyles(theme => ({
     // gridGap: theme.spacing(1),
     display: 'flex',
     flexWrap: 'wrap',
-    // justifyContent: 'space-around',
     justifyContent: 'center',
     overflow: 'hidden',
     textAlign: 'left !important',
@@ -26,25 +21,17 @@ const useStyles = makeStyles(theme => ({
     margin: '0 .5em',
     textAlign: 'center',
     width: '280px',
-    // height: '280px',
     color: theme.palette.text.secondary,
     whiteSpace: 'nowrap',
     marginBottom: theme.spacing(1),
-
     display: 'flex',
-    // flexDirection: 'column',
     alignContent: 'flex-start',
-
     justifyContent: 'flex-start'
   },
   divider: {
     margin: theme.spacing(2, 0),
   },
 }));
-
-const getNotes = () => {
-    
-}
 
 export default function CSSGrid() {
   const classes = useStyles();

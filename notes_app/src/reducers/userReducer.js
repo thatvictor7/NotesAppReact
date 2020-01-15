@@ -1,10 +1,10 @@
-import { 
-        USER_AUTH_POST
-        } from '../actions/types'
+import { USER_AUTH_POST } from '../actions/types'
+import { FETCH_NOTES } from '../actions/types'
 
 const initialState = {
     user: null,
-    loggedIn: false
+    loggedIn: false,
+    notes: []
 }
 
 export default (state = initialState, action) => {
@@ -16,7 +16,12 @@ export default (state = initialState, action) => {
                 user: action.payload,
                 loggedIn: action.loggedIn
             }
-
+        case FETCH_NOTES:
+            // console.log('fetching reducer', state);
+            return {
+                ...state,
+                notes: action.payload
+            }
         default:
             return state
     }
