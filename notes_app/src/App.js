@@ -1,26 +1,24 @@
 import React, { Component } from 'react'
-import './App.css'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import NotesPage from './components/NotesPage'
 import Login from './components/Login'
 import { fetchNotes } from './actions/getNotes'
-import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
-// import { render } from '@testing-library/react';
+import './App.css'
 
 class App extends Component {
 
-  componentWillMount() {
-    this.props.fetchNotes(2)
-  }
+  // componentWillMount() {
+  //   // this.props.fetchNotes(2)
+  //   return this.props.user.user ? this.props.fetchNotes(this.props.user.user.data.User.user_id) : null
+  // }
 
   render() {
 
     const PrivateRoute = () => {
-      console.log(this.props.user.user);
-      
+      console.log(this.props.user, '______1')
       return !this.props.user.loggedIn ? <Redirect to='/login' /> : <Redirect to='/notes' />
-      // return this.props.user !== null ? <Route exact path='/notes' component={NotesGrid} /> : <Redirect to='/login' />
     }
 
     return (
@@ -29,6 +27,7 @@ class App extends Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/notes' component={NotesPage} />
           <PrivateRoute path='/' />
+          {/* <NotesPage /> */}
         </div>
       </div>
     )

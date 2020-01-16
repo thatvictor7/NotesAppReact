@@ -1,14 +1,36 @@
-import React from 'react'
+import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import Navbar from './Navbar'
 import NotesGrid from './NotesGrid'
+import PropTypes from 'prop-types'
+import { fetchNotes } from '../actions/getNotes'
 
-const NotesPage = () => {
-    return(
-        <div>
-            <Navbar />
-            <NotesGrid />
-        </div>
-    )
+class NotesPage extends Component {
+
+    componentWillMount(){
+        this.props.fetchNotes(this.props.userId)
+    }
+
+    render(){
+        return(
+            <div>
+                <Navbar />
+                <NotesGrid notesArray={this.props.notes} />
+            </div>
+        )
+    }
 }
 
-export default NotesPage
+NotesPage.propTypes = {
+  fetchNotes: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired,
+  notes: PropTypes.array.isRequired,
+}
+
+const mapStateToProps = state => ({
+  userId: state.user.userId,
+  notes: state.user.notes
+})
+
+export default connect(mapStateToProps, {fetchNotes})(NotesPage)
+// export default NotesPage

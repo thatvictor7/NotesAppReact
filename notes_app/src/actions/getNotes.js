@@ -9,7 +9,7 @@ export const fetchNotes = (userData) => dispatch => {
     })
     // .then(res => res.json())
     .then((response) => {
-        // console.log('fetched', response);
+        console.log('fetched notes', response);
         dispatch({
             type: FETCH_NOTES,
             payload: response
