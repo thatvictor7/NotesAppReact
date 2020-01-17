@@ -52,6 +52,22 @@ const NotesGrid = (props) => {
     <div>
       <div className={classes.container}>
       {notesDisplay}
+
+        <div style={{ gridColumnEnd: 'span 3' }}>
+          <Paper className={classes.paper}>
+            <Note noteTitle={`note.title`}
+              noteText={`nodldkfsdaf ldfsd khdfj dsfkjsdhf sdfkjs dfkdsdfkhskdf  sh  hfsdfksdhf kste.content`}
+            />
+          </Paper>
+        </div>
+        <div style={{ gridColumnEnd: 'span 3' }}>
+          <Paper className={classes.paper}>
+            <Note noteTitle={`note.title`}
+              noteText={`dsfddslfksdjfjsdlfj dlk fksdjfksdfasd sf`}
+            />
+          </Paper>
+        </div>
+
       </div>
     </div>
   )

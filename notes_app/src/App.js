@@ -9,11 +9,6 @@ import './App.css'
 
 class App extends Component {
 
-  // componentWillMount() {
-  //   // this.props.fetchNotes(2)
-  //   return this.props.user.user ? this.props.fetchNotes(this.props.user.user.data.User.user_id) : null
-  // }
-
   render() {
 
     const PrivateRoute = () => {
@@ -24,10 +19,10 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <Route exact path='/login' component={Login} />
+          {/* <Route exact path='/login' component={Login} />
           <Route exact path='/notes' component={NotesPage} />
-          <PrivateRoute path='/' />
-          {/* <NotesPage /> */}
+          <PrivateRoute path='/' /> */}
+          <NotesPage />
         </div>
       </div>
     )
