@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     width: '280px',
     color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap',
+    // whiteSpace: 'nowrap',
     marginBottom: theme.spacing(1),
     display: 'flex',
     alignContent: 'flex-start',

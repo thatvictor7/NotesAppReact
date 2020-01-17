@@ -172,7 +172,7 @@ export default function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Notes
+            Notesy™
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

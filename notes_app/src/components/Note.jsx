@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     width: '100%',
     textAlign: 'left',
     paddingLeft: '5%',
+    paddingRight: '5%',
     backgroundColor: '#ffffa3',
     overflowWrap: 'break-word'
   },
@@ -28,9 +29,10 @@ const useStyles = makeStyles({
     textAlign: 'left'
   },
   content: {
-    width: '270px',
+    // width: '200px',
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
+    // color: 'red'
   },
 });
 
@@ -65,10 +67,12 @@ function Note(props) {
           <Typography className={classes.title} variant="h5" component="h2">
             {noteTitle}
         </Typography>
-        <Typography className={classes.content} variant="body2" component="div">
+        {/* <Typography className={classes.content} variant="body2" component="div"> */}
            {/* {noteText} */}
-           sdlfhsdghsdflksdnf lsjkdf asdjhfkasd fkjhasdkjf kjhfkj asdfh asdfkadshf kasdfasdhf f
-         </Typography>
+         {/* </Typography> */}
+         <p className={classes.content}>
+           {noteText}
+         </p>
     </div>
   )
 }
