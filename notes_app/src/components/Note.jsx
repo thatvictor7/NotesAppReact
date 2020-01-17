@@ -15,7 +15,9 @@ const useStyles = makeStyles({
     width: '100%',
     textAlign: 'left',
     paddingLeft: '5%',
-    backgroundColor: '#ffffa3'
+    paddingRight: '5%',
+    backgroundColor: '#ffffa3',
+    overflowWrap: 'break-word'
   },
   bullet: {
     display: 'inline-block',
@@ -27,13 +29,17 @@ const useStyles = makeStyles({
     textAlign: 'left'
   },
   content: {
-    marginBottom: 12,
+    // width: '200px',
+    overflowWrap: 'break-word',
+    wordWrap: 'break-word',
+    // color: 'red'
   },
 });
 
-export default function OutlinedCard() {
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+function Note(props) {
+
+  const { noteTitle, noteText } = props
+  const classes = useStyles()
 
   return (
     // <Card className={classes.card} variant="outlined">
@@ -59,11 +65,16 @@ export default function OutlinedCard() {
     // </Card>
     <div className={classes.card}>
           <Typography className={classes.title} variant="h5" component="h2">
-            Title
+            {noteTitle}
         </Typography>
-        <Typography variant="body2" component="p">
-           well meaning and kindly.
-         </Typography>
+        {/* <Typography className={classes.content} variant="body2" component="div"> */}
+           {/* {noteText} */}
+         {/* </Typography> */}
+         <p className={classes.content}>
+           {noteText}
+         </p>
     </div>
-  );
+  )
 }
+
+export default Note
