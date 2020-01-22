@@ -1,13 +1,14 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Modal, Fade, Backdrop } from '@material-ui/core';
+import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import { Paper, Modal } from '@material-ui/core';
 import Note from './Note'
 
-const useStyles = makeStyles(theme => ({
+// const useStyles = makeStyles(theme => ({
+const styles = {
   container: {
     display: 'grid',
     gridTemplateColumns: 'repeat(12, 1fr)',
-    gridGap: theme.spacing(1),
+    // gridGap: theme.spacing(1),
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -16,104 +17,130 @@ const useStyles = makeStyles(theme => ({
     marginTop: '1%',
   },
   paper: {
-    margin: '0 .5em',
+    margin: '.5em',
     textAlign: 'center',
     width: '280px',
-    color: theme.palette.text.secondary,
-    // whiteSpace: 'nowrap',
-    marginBottom: theme.spacing(1),
+    // color: theme.palette.text.secondary,
+    // marginBottom: theme.spacing(1),
     display: 'flex',
     alignContent: 'flex-start',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
-  divider: {
-    margin: theme.spacing(2, 0),
+  modalPaper: {
+    // position: 'absolute',
+    width: 400,
+    height: 400,
+    backgroundColor: '#ffffa3',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    // justifyContent: 'center',
+    // border: '2px solid #000',
+    // boxShadow: theme.shadows[5],
+    // padding: theme.spacing(2, 4, 3),
   },
-
   modal: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  paperTest: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+  input: {
+    backgroundColor: 'rgba(1,1,1,0)',
+    border: 'none',
+    width: 350,
+    height: '100%',
+    fontSize: '1rem',
+    outline: 'none',
+    resize: 'none',
+    paddingLeft: 35,
   },
+  inputTitle: {
+    margin: '1%',
+    backgroundColor: 'rgba(1,1,1,0)',
+    border: 'none',
+    fontSize: '2rem',
+    outline: 'none',
+    resize: 'none',
+  }
 }
-))
+// ))
 
-const NotesGrid = (props) => {
-
-  const { notesArray } = props
+class NotesGrid extends Component {
   
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => {
-    setOpen(true)
+  constructor(props) {
+    super(props)
+    this.state = {
+      notesArray: props,
+      classes: props.classes,
+      isOpen: false,
+      selectedNote: {}
+    }
   }
-  const handleClose = () => {
-    setOpen(false)
-  }
-  const classes = useStyles()
-
-  const popup = (
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      className={classes.modal}
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <Fade in={open}>
-        <div className={classes.paperTest}>
-          <h2 id="transition-modal-title">Transition modal</h2>
-          <p id="transition-modal-description">react-transition-group animates me.</p>
-        </div>
-      </Fade>
-    </Modal>
-  )
-
-  const notesDisplay = notesArray.map(note => {
-    console.log(note)
-    return <div style={{ gridColumnEnd: 'span 3' }}>
-    {/* // return <div style={{ gridColumnEnd: 'span 3' }}> */}
-      <Paper className={classes.paper}>
-        <Note noteTitle={note.title}
-              noteText={note.content}
-         />
-      </Paper>
-    </div>
-  })
   
-  return (
-    <div>
-      <div className={classes.container}>
-      {notesDisplay}
+  render() {
+    
+    const classes = this.state.classes
+    
+    const handleOpen = (note) => {
+      this.setState({ isOpen: true, selectedNote: note })
+    }
 
-        <div onClick={handleOpen} style={{ gridColumnEnd: 'span 3' }}>
-          <Paper className={classes.paper}>
-            <Note noteTitle={`note.title`}
-              noteText={`nodldkfsdaf ldfsd khdfj dsfkjsdhf sdfkjs dfkdsdfkhskdf  sh  hfsdfksdhf kste.content`}
-            />
-          </Paper>
-        </div>
-        <div onClick={handleOpen} style={{ gridColumnEnd: 'span 3' }}>
-          <Paper className={classes.paper}>
-            <Note noteTitle={`note.title`}
-              noteText={`dsfddslfksdjfjsdlfj dlk fksdjfksdfasd sf`}
-            />
-          </Paper>
-        </div>
-        {popup}
+    const handleClose = () => {
+      this.setState({ isOpen: false })
+    }
+
+    const handleChangeTitle = (textChanged) => {
+      this.setState({ selectedNote: textChanged })
+    }
+
+    const notesDisplay = this.state.notesArray.notesArray.map(note => {
+      return <div value={note.note_id} onClick={() => handleOpen(note)} style={{ gridColumnEnd: 'span 3' }}>
+        <Paper className={classes.paper}>
+          <Note noteTitle={note.title}
+            noteText={note.content}
+          />
+        </Paper>
       </div>
-    </div>
-  )
+    })
+
+    return (
+      <div>
+        <div className={classes.container}>
+          {notesDisplay}
+          <div onClick={handleOpen} style={{ gridColumnEnd: 'span 3' }}>
+            <Paper className={classes.paper}>
+              <Note noteTitle={`note.title`}
+                noteText={`nodldkfsdaf ldfsd khdfj dsfkjsdhf sdfkjs dfkdsdfkhskdf  sh  hfsdfksdhf kste.content`}
+              />
+            </Paper>
+          </div>
+          <div onClick={handleOpen} style={{ gridColumnEnd: 'span 3' }}>
+            <Paper className={classes.paper}>
+              <Note noteTitle={`note.title`}
+                noteText={`dsfddslfksdjfjsdlfj dllsdkjsldkjfsldfjsldkjfsldjkfsldjfsldjkflsdjfksldkjfsldkjfsldkjfslkdjfk f;dslkf sdf sdfj f sd fsdhf sfsdha fsd fdfiwhen  dskchdirfksdjfksdfasd sf`}
+              />
+            </Paper>
+          </div>
+          <Modal
+            className={classes.modal}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.isOpen}
+            onClose={handleClose}
+          >
+            <div className={classes.modalPaper}>
+              {/* <h2 id="simple-modal-title">Text in a modal</h2> */}
+              <input className={classes.inputTitle} onChange={handleChangeTitle} placeholder='Note title' value={this.state.selectedNote.title}  />
+              {/* <p id="simple-modal-description">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p> */}
+              <textarea className={classes.input} value={this.state.selectedNote.content} />
+            </div>
+          </Modal>
+        </div>
+      </div>
+    )
+  }
 }
 
-export default NotesGrid
+export default withStyles(styles)(NotesGrid)
